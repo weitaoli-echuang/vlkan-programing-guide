@@ -55,6 +55,3 @@ build/*
 .vs
 .vs/*
 
-CMakeFiles
-CMakeFIles/*
-

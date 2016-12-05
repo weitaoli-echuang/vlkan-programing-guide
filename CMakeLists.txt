@@ -6,12 +6,14 @@ set(NAME vulkan-programing-guide)
 
 project(${NAME})
 
-#include_directories(base)
+find_path(VULKAN_DIR NAMES vulkan/vulkan.h)
+include_directories(${VULKAN_DIR})
 
-find_library(VULKAN_LIB NAMES vulkan-1 vulkan PATHS ${CMAKE_SOURCE_DIR}/libs/vulkan)
+find_library(VULKAN_LIB NAMES vulkan-1 vulkan)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DVK_USE_PLATFORM_WIN32_KHR")
 
 message(STATUS ${VULKAN_LIB})
+message(STATUS ${VULKAN_DIR})
 
 # Set preprocessor defines
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DNOMINMAX -D_USE_MATH_DEFINES")
@@ -26,7 +28,10 @@ add_definitions(-std=gnu++14)
 # Function for building single example
 function(buildExample EXAMPLE_NAME)
 	file(GLOB SOURCE *.cpp ${EXAMPLE_NAME}/*.cpp)
-	add_executable(${EXAMPLE_NAME} WIN32 ${EXAMPLE_NAME}/${EXAMPLE_NAME}.cpp ${SOURCE})
+	#Window
+	#add_executable(${EXAMPLE_NAME} WIN32 ${EXAMPLE_NAME}/${EXAMPLE_NAME}.cpp ${SOURCE})
+	#Consle
+	add_executable(${EXAMPLE_NAME} ${EXAMPLE_NAME}/${EXAMPLE_NAME}.cpp ${SOURCE})
 	target_link_libraries(${EXAMPLE_NAME} ${VULKAN_LIB} ${ASSIMP_LIBRARIES} ${WINLIBS})
 endfunction(buildExample)
 
