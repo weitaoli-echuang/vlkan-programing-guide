@@ -55,3 +55,6 @@ build/*
 .vs
 .vs/*
 
+CMakeFile
+CMakeFiles/*
+
