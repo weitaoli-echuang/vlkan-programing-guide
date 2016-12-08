@@ -1,14 +1,5 @@
 #pragma once
-#include <vector>
-#include <iostream>
-#include <assert.h>
-#include <vulkan/vulkan.h>
-
-#define SUCCESS(create_func) \
-if(VK_SUCCESS!=create_func) \
-std::cout<<"error "<<#create_func<<std::endl;\
-else \
-std::cout<<"success "<<#create_func<<std::endl;
+#include "common.h"
 
 class Render
 {
@@ -22,7 +13,6 @@ public:
 		return new Render;
 	}
 
-private:
 	VkApplicationInfo _app_info{};
 	VkInstanceCreateInfo _instance_create_info{};
 	std::vector<VkLayerProperties> _instance_layer_properties;
@@ -45,6 +35,7 @@ private:
 	VkDevice _device;
 	std::vector<VkDeviceQueueCreateInfo> _device_queue_create_info;
 
+private:
 	void _InitAppInfo();
 	void _InitInstance();
 	void _InitPhysicalDevice();
