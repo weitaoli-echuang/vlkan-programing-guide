@@ -6,6 +6,8 @@ set(NAME vulkan-programing-guide)
 
 project(${NAME})
 
+include_directories(base)
+
 find_path(VULKAN_DIR NAMES vulkan/vulkan.h)
 include_directories(${VULKAN_DIR})
 
@@ -27,7 +29,7 @@ add_definitions(-std=gnu++14)
 
 # Function for building single example
 function(buildExample EXAMPLE_NAME)
-	file(GLOB SOURCE *.cpp ${EXAMPLE_NAME}/*.cpp)
+	file(GLOB SOURCE *.cpp base/*.cpp ${EXAMPLE_NAME}/*.cpp)
 	#Window
 	#add_executable(${EXAMPLE_NAME} WIN32 ${EXAMPLE_NAME}/${EXAMPLE_NAME}.cpp ${SOURCE})
 	#Consle
