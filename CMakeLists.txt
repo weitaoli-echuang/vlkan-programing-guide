@@ -53,6 +53,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "bin/")
 
 set(EXAMPLES 
 	overview-of-vulkan
+	MemoryAndResources
 	)
 
 buildExamples()
