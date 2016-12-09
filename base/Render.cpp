@@ -203,6 +203,12 @@ void Render::_PhysicalDeviceFormatProperties()
 	}
 }
 
+void Render::_PhysicalDeviceLimit()
+{
+	vkGetPhysicalDeviceFeatures(_physical_devices.at(_using_physical_device),
+		&_physical_device_features);
+}
+
 void Render::_PhysicalDeviceImageFormatProperties()
 {
 	_physical_device_format_properties.clear();
@@ -222,7 +228,6 @@ void Render::_PhysicalDeviceImageFormatProperties()
 			<< "\t" << _physical_device_format_properties.at(i).optimalTilingFeatures
 			<< "\t" << _physical_device_format_properties.at(i).bufferFeatures << std::endl;
 	}
-	)
 }
 
 void Render::_CleanDevice()

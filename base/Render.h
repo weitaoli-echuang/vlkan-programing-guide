@@ -49,6 +49,7 @@ private:
 	void _DeviceExtensionProperties();
 	void _PhysicalDeviceFormatProperties();
 	void _PhysicalDeviceImageFormatProperties();
+	void _PhysicalDeviceLimit();
 
 	void _CleanDevice();
 	void _CleanInstance();
