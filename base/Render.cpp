@@ -83,6 +83,8 @@ void Render::_InitPhysicalDevice()
 
 	_DeviceExtensionProperties();
 
+	_PhysicalDeviceFormatProperties();
+
 	vkGetPhysicalDeviceQueueFamilyProperties(_physical_devices.at(_using_physical_device), &_queue_family_count, nullptr);
 	assert(_queue_family_count >= 1);
 	_queue_family_properties.resize(_queue_family_count);
@@ -185,6 +187,42 @@ void Render::_DeviceExtensionProperties()
 	{
 		std::cout << i.extensionName << "\t" << i.specVersion << std::endl;
 	}
+}
+
+void Render::_PhysicalDeviceFormatProperties()
+{
+	///<184¸övkFormat
+	_physical_device_format_properties.resize(184);
+	for (uint32_t i = 0; i < 184; i++)
+	{
+		_physical_device_format.push_back(VkFormat(i));
+		vkGetPhysicalDeviceFormatProperties(_physical_devices.at(_using_physical_device), VkFormat(i), &_physical_device_format_properties.at(i));
+		std::cout << _physical_device_format_properties.at(i).linearTilingFeatures
+			<< "\t" << _physical_device_format_properties.at(i).optimalTilingFeatures
+			<< "\t" << _physical_device_format_properties.at(i).bufferFeatures << std::endl;
+	}
+}
+
+void Render::_PhysicalDeviceImageFormatProperties()
+{
+	_physical_device_format_properties.clear();
+	_physical_device_format_properties.resize(184);
+	for (uint32_t i = 0; i < 184; i++)
+	{
+		_physical_device_format.push_back(VkFormat(i));
+		vkGetPhysicalDeviceImageFormatProperties(
+			_physical_devices.at(_using_physical_device),
+			VkFormat(i),
+			VkImageType::VK_IMAGE_TYPE_1D,
+			VkImageTiling::VK_IMAGE_TILING_LINEAR,
+			VkImageUsageFlagBits::VK_IMAGE_USAGE_TRANSFER_SRC_BIT,
+			VkImageCreateFlagBits::VK_IMAGE_CREATE_CUBE_COMPATIBLE_BIT,
+			&_physical_device_image_format_properties.at(i));
+		std::cout << _physical_device_format_properties.at(i).linearTilingFeatures
+			<< "\t" << _physical_device_format_properties.at(i).optimalTilingFeatures
+			<< "\t" << _physical_device_format_properties.at(i).bufferFeatures << std::endl;
+	}
+	)
 }
 
 void Render::_CleanDevice()

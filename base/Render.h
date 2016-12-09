@@ -28,6 +28,9 @@ public:
 	VkPhysicalDeviceProperties _physical_device_properties{};
 	VkPhysicalDeviceFeatures _physical_device_features{};
 	VkPhysicalDeviceMemoryProperties _physical_device_memory_properties{};
+	std::vector<VkFormat> _physical_device_format;
+	std::vector<VkFormatProperties> _physical_device_format_properties;
+	std::vector<VkImageFormatProperties> _physical_device_image_format_properties;
 	std::vector<VkQueueFamilyProperties> _queue_family_properties;
 	uint32_t _queue_family_count;
 
@@ -41,9 +44,11 @@ private:
 	void _InitPhysicalDevice();
 	void _InitDevice();
 	void _InstanceLayerProperties();
-	void _PhysicalDeviceLayerProperties();
 	void _InstanceExtensionProperties();
+	void _PhysicalDeviceLayerProperties();
 	void _DeviceExtensionProperties();
+	void _PhysicalDeviceFormatProperties();
+	void _PhysicalDeviceImageFormatProperties();
 
 	void _CleanDevice();
 	void _CleanInstance();
