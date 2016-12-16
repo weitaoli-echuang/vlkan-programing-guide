@@ -55,9 +55,10 @@ ENDIF(MSVC)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "bin/")
 
-set(EXAMPLES 
+set(EXAMPLES
 	overview-of-vulkan
 	MemoryAndResources
+	queueAndCommands
 	)
 
 buildExamples()
